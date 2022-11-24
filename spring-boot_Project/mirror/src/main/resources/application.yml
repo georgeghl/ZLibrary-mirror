@@ -1,0 +1,39 @@
+server: 
+    port: 8080
+
+spring:
+    datasource:
+        name: test
+        url: jdbc:mysql://127.0.0.1:3306/zlib?characterEncoding=utf8&serverTimezone=UTC
+        username: root
+        password: 12345678
+        # type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type:   com.zaxxer.hikari.HikariDataSource #数据源类型
+        hikari:
+            pool-name: ---------------------------------------go.zlib.mirror--------------------------------------------
+            maximum-pool-size: 12 #最大连接数，小于等于0会被重置为默认值10；大于零小于1会被重置为minimum-idle的值
+            connection-timeout:   60000 #连接超时时间:毫秒，小于250毫秒，否则被重置为默认值30秒
+            minimum-idle: 10 #最小空闲连接，默认值10，小于0或大于maximum-pool-size，都会重置为maximum-pool-size
+            #空闲连接超时时间，默认值600000（10分钟），大于等于max-lifetime且max-lifetime>0，会被重置为0；不等于0且小于10秒，会被重置为10秒。
+            # 只有空闲连接数大于最大连接数且空闲时间超过该值，才会被释放
+            idle-timeout: 500000
+            #连接最大存活时间.不等于0且小于30秒，会被重置为默认值30分钟.设置应该比mysql设置的超时时间短
+            max-lifetime: 540000
+                #连接测试查询
+            connection-test-query: SELECT 1
+    thymeleaf:
+        # mode: LEGACYHTML5
+        encoding: UTF-8
+        prefix: classpath:/templates/            # 静态页面所在的路径，一般在resources文件加下创建
+        suffix: .html
+        cache: false
+    # servlet: 
+    #     multipart:
+    #         max-request-size: 20MB  # 上传文件总的最大值 默认10MB
+    #         max-file-size: 20MB #单个文件最大值 默认10MB
+
+
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: mapper

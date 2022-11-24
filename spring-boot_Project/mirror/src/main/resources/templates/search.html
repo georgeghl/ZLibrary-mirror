@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" style="background-color: rgba(122, 202, 254, 0.906);">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>zlib书籍检索</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+
+<div style="text-align: center;">
+    <button id="backToIndex" onclick="backToIndex()" class="button">回到首页</button>
+    <!-- <button id="logout" onclick="logout()" class="button">注销</button> -->
+</div>
+
+<div style="text-align: center;">
+    <h1>检索结果</h1><p class="text">温馨提示：点击即可下载书籍对应的Torrent文件！</p>
+</div>
+
+<div id="result" style="margin-top: 1%; margin-left:1%; align-items: center;">
+    <table border="1" style="margin-left: 5%;">
+        <tr>
+            <td style="width: 5%;"><p class="text">编号</p></td>
+            <td style="width: 3%;"><p class="text">上传时间</p></td>
+            <td style="width: 3%;"><p class="text">修改时间</p></td>
+            <td style="width: 3%;"><p class="text">格式</p></td>
+            <td style="width: 4%;"><p class="text">大小</p></td>
+            <td style="width: 15%;"><p class="text">标题</p></td>
+            <td style="width: 3%;"><p class="text">作者</p></td>
+            <td style="width: 3%;"><p class="text">出版商</p></td>
+            <td style="width: 5%;"><p class="text">语言</p></td>
+            <td style="width: 3%;"><p class="text">出版年份</p></td>
+            <td style="width: 3%;"><p class="text">页数</p></td>
+            <!-- <td style="width: 100px;"><p class="text">种子文件</p></td> -->
+        </tr>
+        <tr th:each="book:${books}">
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.id}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.uploadTime}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.time1}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.format}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.size}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.title}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.author}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.publisher}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.language}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.publishYear}"></a></p></td>
+            <td><p class="text"><a th:href="${book.href}"  th:text="${book.page}"></a></p></td>
+            <!-- <td><p class="text"><a th:href="${book.href}"  th:text="${book.torrent}"></a></p></td> -->
+        </tr>
+    </table>
+
+
+</div>
+
+
+<script>
+    function backToIndex(){
+        window.location.replace("/");
+    }
+
+    // function logout(){
+    //     sessionStorage.clear();
+    //     window.location.replace("/");
+    // }
+
+    // $(document).ready(function(){
+    //     $("#searchByKeyword").click(function(){
+    //         var keyword=$("#keyword").val()
+    //         var token=sessionStorage.getItem("token");
+    //         console.log("keyword:"+keyword);
+    //         console.log("token:"+token);
+    //         window.location.replace("/searchByKeyword?token="+token+"&keyword="+keyword);
+    //     })
+    // })
+</script>
+
+<style>
+    .button{
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 20px;
+        cursor: pointer;
+        text-align: center;   
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 6px #999;
+    }
+
+    .button:hover {background-color: #3e8e41}
+
+    .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
+    }
+
+    .input{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 3px;
+    padding: 13px 14px;
+    width: 150px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+    background-color: rgba(178, 228, 255, 0.906);
+    }
+
+    .input:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    background-color: rgba(178, 228, 255, 0.906);
+    }
+
+    .text{
+        font-size: 20px;
+        font-family: "Microsoft soft";
+        font-weight: 700;
+        color: #000000;
+    }
+
+</style>
+
+</html>

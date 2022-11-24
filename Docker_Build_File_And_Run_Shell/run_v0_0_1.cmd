@@ -1,0 +1,1 @@
+java -jar mirror-0.0.1-SNAPSHOT.jar --spring.datasource.url="jdbc:mysql://127.0.0.1:3306/zlib?characterEncoding=utf8&serverTimezone=UTC" --spring.datasource.username="root" --spring.datasource.password="12345678"

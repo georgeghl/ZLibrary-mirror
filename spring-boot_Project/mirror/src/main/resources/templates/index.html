@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" style="background-color: rgba(122, 202, 254, 0.906);">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>zlib书籍检索</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+
+<!-- <div style="text-align: center;"> -->
+    <!-- <button id="backToIndex" onclick="backToIndex()" class="button">回到首页</button> -->
+    <!-- <button id="logout" onclick="logout()" class="button">注销</button> -->
+<!-- </div> -->
+
+<div style="text-align: center;">
+    <h1>zlibrary书籍镜像</h1>
+    <p class="text">(截至2022-09-29)</p>
+    <p class="text">Torrent文件检索</p>
+</div>
+
+
+<div class="func-div">
+    <h1>检索书籍</h1>
+    <div>
+        <p class="text">温馨提示：服务器速度慢，请在提交检索后耐心等待！</p>
+        <p class="text">
+        关键词(书名/标题):  <input name="keyword" type="text" class="input" id="keyword">    
+        <button id="searchByKeyword" class="button">提交</button></p>
+    </div>
+</div>
+
+
+<script>
+    // function logout(){
+    //     sessionStorage.clear();
+    //     window.location.replace("/");
+    // }
+
+    $(document).ready(function(){
+        $("#searchByKeyword").click(function(){
+            var keyword=$("#keyword").val()
+            var token=sessionStorage.getItem("token");
+            console.log("keyword:"+keyword);
+            console.log("token:"+token);
+            // window.location.replace("/searchByKeyword?token="+token+"&keyword="+keyword);
+            window.location.replace("/search?keyword="+keyword);
+        })
+
+    })
+</script>
+
+<style>
+    .button{
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 20px;
+        cursor: pointer;
+        text-align: center;   
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 6px #999;
+    }
+
+    .button:hover {background-color: #3e8e41}
+
+    .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
+    }
+
+    .input{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 3px;
+    padding: 13px 14px;
+    width: 40%;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+    background-color: rgba(178, 228, 255, 0.906);
+    }
+
+    .input:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    background-color: rgba(178, 228, 255, 0.906);
+    }
+
+    .text{
+        font-size: 20px;
+        font-family: "Microsoft soft";
+        font-weight: 700;
+        color: #000000;
+    }
+
+    .func-div{
+        border: #000000; 
+        border-width: 2px; 
+        border-style: solid;
+        margin-top: 0.5%;
+        margin-left: 2%;
+        width: 80%;
+        text-indent: 1%;
+    }
+
+</style>
+
+</html>

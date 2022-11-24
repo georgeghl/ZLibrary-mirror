@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="go.zlib.mirror.mapper.BookMapper">
+    <!-- <select id="selectBookByISBN" resultType="go.zlib.mirror.dao.Book">
+        SELECT * FROM zlib WHERE isbn LIKE #{isbn}
+    </select> -->
+
+    <select id="selectBookByTitle" resultType="go.zlib.mirror.Pojo.Book">
+        SELECT id as id, upload_time as uploadTime, time1 as time1, format as format, size as size, title as title, author as author, publisher as publisher, language as language, publish_year as publishYear, page as page, torrent as torrent FROM book WHERE title LIKE "%${title}%"
+    </select>
+
+    <!-- <insert id="insertBook">
+        INSERT INTO zlib VALUES( #{id}, #{title})
+    </insert> -->
+
+</mapper>
